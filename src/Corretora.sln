@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corretora.Domain", "Corretora.Domain\Corretora.Domain.csproj", "{C56FAC25-21E6-4F25-B8F0-A5A321291E4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corretora.Domain", "Corretora.Domain\Corretora.Domain.csproj", "{C56FAC25-21E6-4F25-B8F0-A5A321291E4B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8E2A2D0D-A814-4C7D-96B4-EEA8CC59481C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corretora.UnitTests", "Tests\Corretora.UnitTests\Corretora.UnitTests.csproj", "{3E78CCE5-CD73-43E0-A10B-FBD7538B5212}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{C56FAC25-21E6-4F25-B8F0-A5A321291E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C56FAC25-21E6-4F25-B8F0-A5A321291E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C56FAC25-21E6-4F25-B8F0-A5A321291E4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E78CCE5-CD73-43E0-A10B-FBD7538B5212}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E78CCE5-CD73-43E0-A10B-FBD7538B5212}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E78CCE5-CD73-43E0-A10B-FBD7538B5212}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E78CCE5-CD73-43E0-A10B-FBD7538B5212}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3E78CCE5-CD73-43E0-A10B-FBD7538B5212} = {8E2A2D0D-A814-4C7D-96B4-EEA8CC59481C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75062E57-111A-4B91-AC82-FB7F9E74874D}
