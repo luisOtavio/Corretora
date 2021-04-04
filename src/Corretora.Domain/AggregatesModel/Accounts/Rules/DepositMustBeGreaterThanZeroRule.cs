@@ -2,13 +2,20 @@
 
 namespace Corretora.Domain.AggregatesModel.Accounts.Rules
 {
-    public class DepositMustBeGreaterThanZeroRule : IBusinessRule
+    internal struct DepositMustBeGreaterThanZeroRule : IBusinessRule
     {
+        private readonly decimal _value;
+
         public string Message => throw new System.NotImplementedException();
+
+        public DepositMustBeGreaterThanZeroRule(decimal value)
+        {
+            _value = value;
+        }
 
         public bool IsBroken()
         {
-            throw new System.NotImplementedException();
+            return (_value <= 0);
         }
     }
 }

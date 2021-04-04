@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="AggregatesModel\Positions\Events\" />
     <Folder Include="AggregatesModel\Users\Rules\" />
     <Folder Include="Exceptions\" />
   </ItemGroup>

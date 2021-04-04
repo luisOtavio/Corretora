@@ -14,7 +14,7 @@ namespace Corretora.Domain.AggregatesModel.Accounts
 
         protected Account() { }
 
-        private Account(AccountNumber number)
+        public Account(AccountNumber number)
         {
             Number = number;
             Balance = 0;
@@ -22,14 +22,14 @@ namespace Corretora.Domain.AggregatesModel.Accounts
 
         public void Deposit(decimal value)
         {
-            CheckRule(new DepositMustBeGreaterThanZeroRule());
+            CheckRule(new DepositMustBeGreaterThanZeroRule(value));
 
             Balance += value;
         }
 
         public void Withdraw(decimal value)
         {
-            CheckRule(new DepositMustBeGreaterThanZeroRule());
+            CheckRule(new BalanceShouldBeSufficientForTheWithdrawRule(this.Balance));
 
             Balance -= value;
         }       
