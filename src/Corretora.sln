@@ -9,9 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8E2A2D0D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corretora.UnitTests", "Tests\Corretora.UnitTests\Corretora.UnitTests.csproj", "{3E78CCE5-CD73-43E0-A10B-FBD7538B5212}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corretora.Application", "Corretora.Application\Corretora.Application.csproj", "{E6C80671-1AE1-4BD9-A3B8-089B79DAD115}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corretora.Application", "Corretora.Application\Corretora.Application.csproj", "{E6C80671-1AE1-4BD9-A3B8-089B79DAD115}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corretora.Api", "Corretora.Api\Corretora.Api.csproj", "{78F5A18C-01D2-4295-9B3C-24E99D76C32A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corretora.Api", "Corretora.Api\Corretora.Api.csproj", "{78F5A18C-01D2-4295-9B3C-24E99D76C32A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

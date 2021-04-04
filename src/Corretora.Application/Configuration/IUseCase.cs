@@ -1,7 +1,9 @@
-﻿namespace Corretora.Application.Configuration
+﻿using System.Threading.Tasks;
+
+namespace Corretora.Application.Configuration
 {
-    interface IUseCase<TRequest, TResponse>
+    internal interface IUseCase<TCommand, TResponse>
     {
-        TResponse Execute(TRequest requet);
+        Task<TResponse> Execute(TCommand command);
     }
 }

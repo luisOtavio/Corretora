@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Corretora.Application.Accounts.Deposit;
+using Corretora.Application.Configuration.Mediator;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -17,15 +19,18 @@ namespace Corretora.Api.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IMediatorHandler _mediator;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IMediatorHandler mediator)
         {
             _logger = logger;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            _mediator.SendCommand(new NewDepositCommand());
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
