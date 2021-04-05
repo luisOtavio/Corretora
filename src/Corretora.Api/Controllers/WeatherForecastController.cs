@@ -28,9 +28,9 @@ namespace Corretora.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IEnumerable<WeatherForecast>> Get()
         {
-            _mediator.SendCommand(new NewDepositCommand());
+            await _mediator.SendCommand(new NewDepositCommand());
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

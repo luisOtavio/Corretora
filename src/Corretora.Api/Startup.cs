@@ -1,4 +1,5 @@
-using Corretora.Api.Configuration.Extensions;
+using Corretora.Api.Infrastructure.DependencyInjection;
+using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,8 +23,9 @@ namespace Corretora.Api
         {
             services.AddControllers();
 
-            services.ConfigureMediatR();
-
+            services
+                .ConfigureMediatR()
+                .RegisterProblemDetails();
 
             services.AddSwaggerGen(c =>
             {
@@ -35,11 +37,12 @@ namespace Corretora.Api
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
+            {           
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Corretora.Api v1"));
             }
+
+            app.UseProblemDetails();
 
             app.UseRouting();
 

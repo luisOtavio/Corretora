@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corretora.Application", "Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Corretora.Api", "Corretora.Api\Corretora.Api.csproj", "{78F5A18C-01D2-4295-9B3C-24E99D76C32A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corretora.Infrastructure", "Corretora.Infrastructure\Corretora.Infrastructure.csproj", "{213877E2-D413-48C9-B619-E26F6DDF0AF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{78F5A18C-01D2-4295-9B3C-24E99D76C32A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78F5A18C-01D2-4295-9B3C-24E99D76C32A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78F5A18C-01D2-4295-9B3C-24E99D76C32A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{213877E2-D413-48C9-B619-E26F6DDF0AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{213877E2-D413-48C9-B619-E26F6DDF0AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{213877E2-D413-48C9-B619-E26F6DDF0AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{213877E2-D413-48C9-B619-E26F6DDF0AF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
