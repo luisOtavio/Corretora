@@ -6,7 +6,7 @@ services:
       - SA_PASSWORD=Pass@word
       - ACCEPT_EULA=Y
     ports:
-      - "5433:1433"
+      - "5344:1433"
     volumes:
       - corretora-sqldata:/var/opt/mssql
 

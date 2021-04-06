@@ -1,7 +1,9 @@
 using Corretora.Api.Infrastructure.DependencyInjection;
+using Corretora.Infrastructure.Data;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -21,6 +23,10 @@ namespace Corretora.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            // Add framework services.
+            services.AddDbContext<CorretoraDbContext>(options =>
+                    options.UseSqlServer(Configuration["ConnectionString"]));
 
             services
                 .ConfigureMediatR()
