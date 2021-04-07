@@ -1,4 +1,5 @@
 using Corretora.Api.Infrastructure.DependencyInjection;
+using Corretora.Infrastructure.Bootstrap;
 using Corretora.Infrastructure.Data;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
@@ -30,7 +31,8 @@ namespace Corretora.Api
 
             services
                 .ConfigureMediatR()
-                .RegisterProblemDetails();
+                .RegisterProblemDetails()
+                .ConfigureInfrastructure();
 
             services.AddSwaggerGen(c =>
             {

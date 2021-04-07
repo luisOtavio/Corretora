@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Corretora.Application\Corretora.Application.csproj" />
-    <ProjectReference Include="..\Corretora.Domain\Corretora.Domain.csproj" />
     <ProjectReference Include="..\Corretora.Infrastructure\Corretora.Infrastructure.csproj" />
   </ItemGroup>
 

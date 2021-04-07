@@ -5,11 +5,11 @@ namespace Corretora.Domain.AggregatesModel.Accounts
 {
     public class AccountNumber : ValueObject
     {
-        readonly string _value;
+        public string Value { get; }
 
         private AccountNumber(string value)
         {
-            _value = value;
+            Value = value;
         }
 
         public static AccountNumber Create(string number)
@@ -17,10 +17,9 @@ namespace Corretora.Domain.AggregatesModel.Accounts
             return new AccountNumber(number);
         }
 
-
         protected override IEnumerable<object> GetEqualityComponents()
         {
-            throw new System.NotImplementedException();
+            yield return Value;
         }
     }
 }
