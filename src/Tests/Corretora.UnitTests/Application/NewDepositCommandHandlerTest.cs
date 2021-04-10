@@ -41,7 +41,6 @@ namespace Corretora.UnitTests.Application
 
             // Act && Assert
             await Assert.ThrowsAsync<ApplicationException>(async () => await handler.Handle(command, cltToken));
-
         }
     }
 }

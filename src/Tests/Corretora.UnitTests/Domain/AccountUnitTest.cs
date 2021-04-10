@@ -34,7 +34,6 @@ namespace Corretora.UnitTests.Domain
 
         //    // Act & Assert
         //    Assert.Throws<DepositMustBeGreaterThanZeroRule>(() => account.Deposit(0) );
-        //    Assert.Throws<DepositMustBeGreaterThanZeroRule>(() => sut.ReadCurrentTemperature());
         //}
     }
 }
