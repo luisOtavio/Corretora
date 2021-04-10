@@ -2,6 +2,7 @@
 using Corretora.Domain.AggregatesModel.Accounts;
 using Corretora.Domain.AggregatesModel.Users;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,7 +27,7 @@ namespace Corretora.Application.Accounts.Deposit
 
             if (account == null)
             {
-
+                throw new ApplicationException("Account not found");
             }
 
             var user = await _userRepository.FindAsync(account.UserId);
@@ -39,9 +40,8 @@ namespace Corretora.Application.Accounts.Deposit
             account.Deposit(command.Amount);
 
             _accountRepository.Update(account);
-            await
-                _accountRepository.UnitOfWork.CommitAsync();
-
+            await _accountRepository.UnitOfWork.CommitAsync();
+             
             return CommandResult.Ok();
         }
     }
