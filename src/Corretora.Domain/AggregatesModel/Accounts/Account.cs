@@ -22,7 +22,7 @@ namespace Corretora.Domain.AggregatesModel.Accounts
 
         public void Deposit(decimal value)
         {
-            CheckRule(new DepositMustBeGreaterThanZeroRule(value));
+            CheckRule(new DepositAmountMustBeGreaterThanZeroRule(value));
 
             Balance += value;
         }

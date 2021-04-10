@@ -26,7 +26,7 @@ namespace Corretora.Api
             services.AddControllers();
 
             // Add framework services.
-            services.AddDbContext<CorretoraDbContext>(options =>
+            services.AddDbContext<CorretoraContext>(options =>
                     options.UseSqlServer(Configuration["ConnectionString"]));
 
             services
@@ -40,7 +40,7 @@ namespace Corretora.Api
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, CorretoraDbContext dataContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, CorretoraContext dataContext)
         {
             dataContext.Database.Migrate();
 

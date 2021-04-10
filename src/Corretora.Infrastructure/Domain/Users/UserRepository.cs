@@ -8,9 +8,9 @@ namespace Corretora.Infrastructure.Domain.Users
 {
     internal class UserRepository : IUserRepository
     {
-        private readonly CorretoraDbContext _context;
+        private readonly CorretoraContext _context;
 
-        public UserRepository(CorretoraDbContext context)
+        public UserRepository(CorretoraContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }

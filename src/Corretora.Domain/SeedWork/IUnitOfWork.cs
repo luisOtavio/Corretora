@@ -6,6 +6,6 @@ namespace Corretora.Domain.SeedWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        Task<int> CommitAsync(CancellationToken cancellationToken = default);
+        Task<bool> CommitAsync(CancellationToken cancellationToken = default);
     }
 }

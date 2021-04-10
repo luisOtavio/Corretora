@@ -1,6 +1,8 @@
 ﻿namespace Corretora.Domain.SeedWork
 {
-    public interface IRepository
+    // TODO veridicar se é necessário implementar o IDisposable
+    public interface IRepository<T> where T : IAggregateRoot
     {
+        IUnitOfWork UnitOfWork { get; }
     }
 }

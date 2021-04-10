@@ -1,4 +1,5 @@
 ﻿using Corretora.Domain.AggregatesModel.Accounts;
+using Corretora.Domain.SeedWork;
 using Corretora.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,18 +9,25 @@ namespace Corretora.Infrastructure.Domain.Accounts
 {
     public class AccountRepository : IAccountRepository
     {
-        private readonly CorretoraDbContext _context;
+        private readonly CorretoraContext _context;
 
-        public AccountRepository(CorretoraDbContext context)
+        public AccountRepository(CorretoraContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
+
+        public IUnitOfWork UnitOfWork => _context;
 
         public async Task<Account> FindByNumberAsync(string number)
         {
             return await _context
               .Accounts
               .FirstOrDefaultAsync(account => account.Number.Value == number);
+        }
+
+        public void Update(Account account)
+        {
+             _context.Accounts.Update(account);
         }
     }
 }

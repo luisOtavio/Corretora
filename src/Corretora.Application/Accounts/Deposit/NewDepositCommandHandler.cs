@@ -20,9 +20,9 @@ namespace Corretora.Application.Accounts.Deposit
             _userRepository = userRepository;
         }
 
-        public  async Task<CommandResult> Handle(NewDepositCommand request, CancellationToken cancellationToken)
+        public  async Task<CommandResult> Handle(NewDepositCommand command, CancellationToken cancellationToken)
         {
-            var account = await _accountRepository.FindByNumberAsync(request.Target.Account);
+            var account = await _accountRepository.FindByNumberAsync(command.Target.Account);
 
             if (account == null)
             {
@@ -31,12 +31,18 @@ namespace Corretora.Application.Accounts.Deposit
 
             var user = await _userRepository.FindAsync(account.UserId);
 
-            if (request.Origin.Cpf != user.Cpf.Value)
+            if (command.Origin.Cpf != user.Cpf.Value)
             {
 
             }
 
-            return null;
+            account.Deposit(command.Amount);
+
+            _accountRepository.Update(account);
+            await
+                _accountRepository.UnitOfWork.CommitAsync();
+
+            return CommandResult.Ok();
         }
     }
 }

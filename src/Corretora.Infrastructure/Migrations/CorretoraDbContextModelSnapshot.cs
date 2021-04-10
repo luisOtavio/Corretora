@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Corretora.Infrastructure.Migrations
 {
-    [DbContext(typeof(CorretoraDbContext))]
+    [DbContext(typeof(CorretoraContext))]
     partial class CorretoraDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

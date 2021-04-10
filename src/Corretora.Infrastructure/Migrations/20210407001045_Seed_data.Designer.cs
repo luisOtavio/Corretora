@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Corretora.Infrastructure.Migrations
 {
-    [DbContext(typeof(CorretoraDbContext))]
+    [DbContext(typeof(CorretoraContext))]
     [Migration("20210407001045_Seed_data")]
     partial class Seed_data
     {
