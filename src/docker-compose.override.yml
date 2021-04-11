@@ -1,15 +1,41 @@
 version: '3.4'
 
 services:
-  sqldata:
-    environment:
-      - SA_PASSWORD=Pass@word
-      - ACCEPT_EULA=Y
-    ports:
-      - "5344:1433"
-    volumes:
-      - corretora-sqldata:/var/opt/mssql
+    seq:
+        environment:
+            - ACCEPT_EULA=Y
+        ports:
+            - "5340:80"
+            - "5341:5341"
+        networks:
+            - corretora-network
+
+    sqldata:
+        environment:
+              - SA_PASSWORD=Pass@word
+              - ACCEPT_EULA=Y
+        ports:
+             - "5344:1433"
+        networks:
+            - corretora-network
+        volumes:
+          - corretora-sqldata:/var/opt/mssql
+
+    corretora-api:
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=http://0.0.0.0:80
+            - ConnectionString=Server=sqldata;Initial Catalog=Corretora;User Id=sa;Password=Pass@word
+            - PORT=80
+        ports:
+            - "8102:80"
+        networks:
+            - corretora-network
 
 volumes:
-  corretora-sqldata:
-    external: false
+    corretora-sqldata:
+        external: false
+
+networks: 
+     corretora-network:
+        driver: bridge

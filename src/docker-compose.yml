@@ -1,6 +1,16 @@
 version: '3.4'
 
 services:
+    seq:
+        image: datalust/seq:latest
 
-  sqldata:
-    image: mcr.microsoft.com/mssql/server:2017-latest 
+    sqldata:
+        image: mcr.microsoft.com/mssql/server:2017-latest 
+        
+    corretora-api:
+        image: ${REGISTRY:-corretora}/corretora.api:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: Corretora.API/Dockerfile
+        depends_on:
+            - sqldata
