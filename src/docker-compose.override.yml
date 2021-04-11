@@ -25,8 +25,8 @@ services:
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
             - ASPNETCORE_URLS=http://0.0.0.0:80
-            - ConnectionString=Server=sqldata;Initial Catalog=Corretora;User Id=sa;Password=Pass@word
             - PORT=80
+            - ConnectionString=Server=sqldata;Initial Catalog=Corretora;User Id=sa;Password=Pass@word
         ports:
             - "8102:80"
         networks:
