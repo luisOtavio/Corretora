@@ -10,12 +10,12 @@ using Xunit;
 
 namespace Corretora.UnitTests.Application
 {
-    public class NewDepositCommandHandlerTest
+    public class NewDepositCommandHandlerTests
     {
         private readonly Mock<IAccountRepository> _accountRepositoryMock;
         private readonly Mock<IUserRepository> _userRepositoryMock;
 
-        public NewDepositCommandHandlerTest()
+        public NewDepositCommandHandlerTests()
         {
             _accountRepositoryMock = new Mock<IAccountRepository>();
             _userRepositoryMock = new Mock<IUserRepository>();

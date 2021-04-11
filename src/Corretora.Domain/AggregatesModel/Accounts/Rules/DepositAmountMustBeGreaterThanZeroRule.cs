@@ -2,7 +2,7 @@
 
 namespace Corretora.Domain.AggregatesModel.Accounts.Rules
 {
-    internal struct DepositAmountMustBeGreaterThanZeroRule : IBusinessRule
+    public struct DepositAmountMustBeGreaterThanZeroRule : IBusinessRule
     {
         private readonly decimal _value;
 
