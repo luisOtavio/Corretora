@@ -1,5 +1,5 @@
-﻿using Corretora.Application.Configuration.Mediator;
-using Corretora.Infrastructure.Application.Behaviors;
+﻿using Corretora.Application.Configuration.Behaviors;
+using Corretora.Application.Configuration.Mediator;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,9 +14,8 @@ namespace Corretora.Api.Infrastructure.DependencyInjection
             services
                 .AddMediatR(Application.Assemblies.Value)
                 .AddScoped<IMediatorHandler, MediatorHandler>()
-                .AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
-            //.AddScoped(typeof(IPipelineBehavior<,>), typeof(CommandValidationBehavior<,>))
-            //.AddScoped(typeof(IPipelineBehavior<,>), typeof(TransactionCommandBehavior<,>));
+                .AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>))
+                .AddScoped(typeof(IPipelineBehavior<,>), typeof(CommandValidationBehavior<,>));
 
             return services;
         }

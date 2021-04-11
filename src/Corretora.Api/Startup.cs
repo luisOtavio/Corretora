@@ -1,6 +1,7 @@
 using Corretora.Api.Infrastructure.DependencyInjection;
 using Corretora.Infrastructure.Bootstrap;
 using Corretora.Infrastructure.Data;
+using FluentValidation.AspNetCore;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,9 +24,14 @@ namespace Corretora.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+                .AddFluentValidation(fv =>
+                {
+                    fv.RegisterValidatorsFromAssemblyContaining<Application.Assemblies>();
+                    fv.AutomaticValidationEnabled = false;
+                }); ;
 
-            // Add framework services.
+
             services.AddDbContext<CorretoraContext>(options =>
                     options.UseSqlServer(Configuration["ConnectionString"]));
 

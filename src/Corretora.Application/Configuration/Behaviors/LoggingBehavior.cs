@@ -4,7 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Corretora.Infrastructure.Application.Behaviors
+namespace Corretora.Application.Configuration.Behaviors
 {
     public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
@@ -23,7 +23,7 @@ namespace Corretora.Infrastructure.Application.Behaviors
             }
             catch (Exception exception)
             {
-                this._logger.LogError(exception, "Command processing failed");
+                _logger.LogError(exception, "Command processing failed");
                 throw;
             }
         }
