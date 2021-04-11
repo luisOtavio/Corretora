@@ -6,6 +6,10 @@ namespace Corretora.Application.Accounts.Deposit
 {
     public class NewDepositCommand : IRequest<CommandResult>
     {
+        public NewDepositCommand()
+        {
+        }
+
         public NewDepositCommand(TargetDto target, OriginDto origin, decimal amount)
         {
             Target = target;

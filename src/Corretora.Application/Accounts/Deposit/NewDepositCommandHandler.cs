@@ -34,7 +34,7 @@ namespace Corretora.Application.Accounts.Deposit
 
             if (command.Origin.Cpf != user.Cpf.Value)
             {
-
+                throw new ApplicationException("CPF not found");
             }
 
             account.Deposit(command.Amount);
@@ -44,5 +44,7 @@ namespace Corretora.Application.Accounts.Deposit
              
             return CommandResult.Ok();
         }
+
+
     }
 }
