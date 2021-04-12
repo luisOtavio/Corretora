@@ -44,6 +44,15 @@ namespace Corretora.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Corretora.Api", Version = "v1" });
             });
+
+            services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
+            {
+                builder
+                    .SetIsOriginAllowed(s => true)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+            }));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, CorretoraContext dataContext)
@@ -59,6 +68,8 @@ namespace Corretora.Api
             app.UseProblemDetails();
 
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 

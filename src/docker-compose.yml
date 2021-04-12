@@ -14,3 +14,11 @@ services:
             dockerfile: Corretora.API/Dockerfile
         depends_on:
             - sqldata
+
+    corretora-spa:
+        image: ${REGISTRY:-corretora}/corretora.spa:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: ./Web/angular
+            dockerfile: Dockerfile
+        depends_on:
+            - corretora-api
