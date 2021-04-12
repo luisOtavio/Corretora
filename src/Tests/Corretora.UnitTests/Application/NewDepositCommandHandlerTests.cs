@@ -5,6 +5,7 @@ using Corretora.Domain.AggregatesModel.Users;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -33,10 +34,10 @@ namespace Corretora.UnitTests.Application
 
             var handler = new NewDepositCommandHandler(_accountRepositoryMock.Object, _userRepositoryMock.Object);
 
-            var cltToken = new System.Threading.CancellationToken();
+            var cancellationToken = new System.Threading.CancellationToken();
 
             // Act && Assert
-            await Assert.ThrowsAsync<ApplicationException>(async () => await handler.Handle(command, cltToken));
+            await Assert.ThrowsAsync<ApplicationException>(async () => await handler.Handle(command, cancellationToken));
         }
 
         [Fact]
@@ -59,10 +60,42 @@ namespace Corretora.UnitTests.Application
 
             var handler = new NewDepositCommandHandler(_accountRepositoryMock.Object, _userRepositoryMock.Object);
 
-            var cltToken = new System.Threading.CancellationToken();
-
             // Act && Assert
-            await Assert.ThrowsAsync<ApplicationException>(async () => await handler.Handle(command, cltToken));
+            await Assert.ThrowsAsync<ApplicationException>(async () => await handler.Handle(command, default(CancellationToken)));
+        }
+
+        [Fact]
+        public async Task NewDepositCommandHandler_WhenSuccessful_MustReturnOk()
+        {
+            // Arrange
+            var accountFake = CreateFakeAccount();
+
+            _accountRepositoryMock
+                .Setup(accountRepository => accountRepository.FindByNumberAsync(It.IsAny<string>()))
+                .Returns(Task.FromResult(accountFake));
+
+            _accountRepositoryMock
+                .Setup(userRepository => userRepository.UnitOfWork.CommitAsync(default(CancellationToken)))
+                .Returns(Task.FromResult(true));
+
+            var fakeUser = CreateFakeUser();
+
+            _userRepositoryMock
+                .Setup(userRepository => userRepository.FindAsync(It.IsAny<Guid>()))
+                .Returns(Task.FromResult(fakeUser));
+
+            var command = CreateFakeDepositCommand(new Dictionary<string, object> {
+                ["cpf"] = fakeUser.Cpf.Value,
+                ["amount"] = 134.45M
+            });
+
+            var handler = new NewDepositCommandHandler(_accountRepositoryMock.Object, _userRepositoryMock.Object);
+
+            // Act
+            var result = await handler.Handle(command, default(CancellationToken));
+
+            // Assert
+            Assert.True(result.Sucess);
         }
 
         private Account CreateFakeAccount()
@@ -86,7 +119,7 @@ namespace Corretora.UnitTests.Application
                     {
                         Cpf = args != null && args.ContainsKey("cpf") ? (string)args?["cpf"] :  "012345678901",
                     },
-                    amount: 0
+                    amount: args != null && args.ContainsKey("amount") ? (decimal)args?["amount"] : 0
                 );
         }
     }

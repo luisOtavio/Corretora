@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Corretora.Domain.AggregatesModel.Users
 {
-    public interface IUserRepository
+    public interface IUserRepository 
     {
         Task<User> FindAsync(Guid userId);
     }
