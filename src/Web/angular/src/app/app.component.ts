@@ -9,10 +9,4 @@ import { NewSbpEventRequest, SbpService } from './services';
 })
 export class AppComponent {
   title = 'corretora';
-
-  /**
-   *
-   */
-  constructor() {
-  }
 }

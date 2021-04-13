@@ -12,6 +12,7 @@ export class ContaComponent implements OnInit {
   formulario = this.fb.group({
     conta: ['', Validators.required],
     valor: ['', Validators.required],
+    cpf: ['', Validators.required],
   });
 
   constructor(
@@ -21,7 +22,6 @@ export class ContaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.apresentarNotificacaoDeDeposito(45.5);
   }
 
   depositar() {
@@ -35,7 +35,7 @@ export class ContaComponent implements OnInit {
       origin: {
         bank: '033',
         branch: '03312',
-        cpf: '92414263067',
+        cpf: this.formulario.value.cpf,
       },
       amount: this.formulario.value.valor,
     };

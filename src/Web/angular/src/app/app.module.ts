@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { ContaComponent } from './conta/conta.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CoreModule } from './core';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    CoreModule,
     MaterialModule,
     ReactiveFormsModule
 
