@@ -33,8 +33,6 @@ services:
             - corretora-network
 
     corretora-spa:
-        environment:
-            - API_URL=corretora-api
         ports:
             - "8103:80"
         networks:
