@@ -25,6 +25,7 @@ services:
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
             - ASPNETCORE_URLS=http://0.0.0.0:80
+            - Serilog__SeqServerUrl=http://seq:5341
             - PORT=80
             - ConnectionString=Server=sqldata;Initial Catalog=Corretora;User Id=sa;Password=Pass@word
         ports:
