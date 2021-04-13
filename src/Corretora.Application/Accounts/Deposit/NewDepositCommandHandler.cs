@@ -42,7 +42,7 @@ namespace Corretora.Application.Accounts.Deposit
             _accountRepository.Update(account);
             await _accountRepository.UnitOfWork.CommitAsync();
              
-            return CommandResult.Ok();
+            return CommandResult.Ok(new { account.Balance });
         }
 
 

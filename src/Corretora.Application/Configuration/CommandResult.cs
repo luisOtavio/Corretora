@@ -4,14 +4,17 @@
     {
         public bool Sucess { get; }
 
-        public CommandResult(bool sucess)
+        public readonly dynamic Value { get; }
+
+        public CommandResult(bool sucess, dynamic value = null)
         {
             this.Sucess = sucess;
+            this.Value = value;
         }
 
-        public static CommandResult Ok()
+        public static CommandResult Ok(dynamic value = null)
         {
-            return new CommandResult(true);
+            return new CommandResult(true, value);
         }
 
         public static CommandResult Fail()
