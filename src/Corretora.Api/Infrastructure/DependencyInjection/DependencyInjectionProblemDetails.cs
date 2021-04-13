@@ -4,6 +4,7 @@ using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 
 namespace Corretora.Api.Infrastructure.DependencyInjection
@@ -15,16 +16,28 @@ namespace Corretora.Api.Infrastructure.DependencyInjection
             services.AddProblemDetails(ex =>
             {
                 ex.Map<InvalidCommandException>(ex => new InvalidCommandProblemDetails(ex));
+                ex.Map<ApplicationException>(ex => new ApplicationExceptionExceptionProblemDetails(ex));
                 ex.Map<BusinessRuleValidationException>(ex => new BusinessRuleValidationExceptionProblemDetails(ex));
             });
 
             return services;
         }
     }
-
+    
     internal class BusinessRuleValidationExceptionProblemDetails : ProblemDetails
     {
         public BusinessRuleValidationExceptionProblemDetails(BusinessRuleValidationException exception)
+        {
+            Title = "Business rule broken";
+            Status = StatusCodes.Status409Conflict;
+            Detail = exception.Message;
+            Type = "https://somedomain/business-rule-validation-error";
+        }
+    }
+
+    internal class ApplicationExceptionExceptionProblemDetails : ProblemDetails
+    {
+        public ApplicationExceptionExceptionProblemDetails(ApplicationException exception)
         {
             Title = "Business rule broken";
             Status = StatusCodes.Status409Conflict;

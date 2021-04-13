@@ -5,14 +5,15 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpErrorResponse,
-  HttpResponse,
 } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Result } from '../services/result';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackErrorComponent } from './snack-erro.component';
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor( private _snackBar: MatSnackBar) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -22,25 +23,28 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       tap((httpResponse) => {}),
 
       catchError((response) => {
-        const httpErroResponse: HttpErrorResponse = response;
-        console.log(httpErroResponse.error);
+        const httpErroResponse: HttpErrorResponse | any = response;
         switch (httpErroResponse.status) {
           case 400:
           case 409:
-            break;
-          case 500:
-            // this.toast.error('Ocorreu um erro inesperado.');
-            break;
-          case 401:
-            // this.authService.logout();
+            this.apresentarNotificacao(httpErroResponse?.error?.errors[0].message);
             break;
           default:
-            // this.toast.error('Ocorreu um erro no sistema.');
+            this.apresentarNotificacao('Ocorreu um erro no sistema.');
             break;
         }
 
         return of(response);
       })
     );
+  }
+
+  private apresentarNotificacao(mensagem: string) {
+    this._snackBar.openFromComponent(SnackErrorComponent, {
+      duration: 5000,
+      data: {
+        mensagem: mensagem,
+      },
+    });
   }
 }

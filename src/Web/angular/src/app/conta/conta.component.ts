@@ -21,8 +21,7 @@ export class ContaComponent implements OnInit {
     private _snackBar: MatSnackBar
   ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   depositar() {
     const request: NewSbpEventRequest = {
@@ -48,7 +47,9 @@ export class ContaComponent implements OnInit {
   private apresentarNotificacaoDeDeposito(saldo: number | undefined) {
     this._snackBar.openFromComponent(SnackComponent, {
       duration: 5000,
-      data: { mensagem: `Operacao realizada com sucesso! Seu saldo é R$ ${saldo}` }
+      data: {
+        mensagem: `Operacao realizada com sucesso! Seu saldo é R$ ${saldo}`,
+      },
     });
   }
 }
@@ -58,7 +59,8 @@ export class ContaComponent implements OnInit {
   template: '{{ data.mensagem }}',
 })
 export class SnackComponent {
-  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: { mensagem: string},
-  public snackBar: MatSnackBar) {
-}
+  constructor(
+    @Inject(MAT_SNACK_BAR_DATA) public data: { mensagem: string },
+    public snackBar: MatSnackBar
+  ) {}
 }
