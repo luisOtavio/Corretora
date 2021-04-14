@@ -1,6 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
 import { NewSbpEventRequest, SbpService } from '../services';
 
 @Component({
@@ -8,12 +9,14 @@ import { NewSbpEventRequest, SbpService } from '../services';
   templateUrl: './conta.component.html',
   styleUrls: ['./conta.component.scss'],
 })
-export class ContaComponent implements OnInit {
+export class ContaComponent implements OnDestroy {
   formulario = this.fb.group({
     conta: ['', Validators.required],
     valor: ['', Validators.required],
     cpf: ['', Validators.required],
   });
+
+  subscriptions: Subscription[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -21,7 +24,9 @@ export class ContaComponent implements OnInit {
     private _snackBar: MatSnackBar
   ) {}
 
-  ngOnInit(): void {}
+  ngOnDestroy() {
+    this.subscriptions.forEach(s => s.unsubscribe());
+  }
 
   depositar() {
     const request: NewSbpEventRequest = {
@@ -39,9 +44,11 @@ export class ContaComponent implements OnInit {
       amount: this.formulario.value.valor,
     };
 
-    this.sbpService.post(request).subscribe((result) => {
-      this.apresentarNotificacaoDeDeposito(result.value?.balance);
-    });
+    this.subscriptions.push(
+      this.sbpService.post(request).subscribe((result) => {
+        this.apresentarNotificacaoDeDeposito(result.value?.balance);
+      })
+    );
   }
 
   private apresentarNotificacaoDeDeposito(saldo: number | undefined) {
