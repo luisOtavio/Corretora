@@ -1,4 +1,4 @@
-FROM node:13-alpine AS Builder
+FROM node:15.14.0-alpine3.10 AS Builder
 
 RUN npm install -g @angular/cli
 ADD ./package.json /app/package.json
