@@ -8,7 +8,7 @@ services:
         image: mcr.microsoft.com/mssql/server:2017-latest 
         
     corretora-api:
-        image: ${REGISTRY:-corretora}/corretora.api:${PLATFORM:-linux}-${TAG:-latest}
+        image: corretora/corretora.api:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
             dockerfile: Corretora.API/Dockerfile
@@ -16,7 +16,7 @@ services:
             - sqldata
 
     corretora-spa:
-        image: ${REGISTRY:-corretora}/corretora.spa:${PLATFORM:-linux}-${TAG:-latest}
+        image: corretora/corretora.spa:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: ./Web/angular
             dockerfile: Dockerfile
