@@ -1,5 +1,9 @@
 # Corretora
     
+## CI
+
+![](https://github.com/luisOtavio/Corretora/blob/main/.github/workflows/dotnet/badge.svg)
+
 ## Construir e Executar
 ```
 cd ./src

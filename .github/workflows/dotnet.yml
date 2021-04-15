@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build and run Unit and Architecture Tests
+    name: Build and run Tests
     runs-on: ubuntu-latest
 
     steps:
