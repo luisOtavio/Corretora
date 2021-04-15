@@ -1,16 +1,13 @@
 # Corretora
-
+    
 ## Construir e Executar
 ```
+cd ./src
 docker-compose build
 docker-compose up -d
 ```
+### Serviços
 
-### Ambiente de desenvolvimento
-
-
-
-### Componentes
 - Web app: http://localhost:8103
 - Swagger: http://localhost:8102/swagger
 - Seq: http://localhost:5340
@@ -18,13 +15,17 @@ docker-compose up -d
   - servidor: 127.0.0.1,5344
   - senha: Pass@word
   
+  
+## Ambiente de desenvolvimento
 
-## Estrutura
-
-
-## Versões
-    - API: .NET 5
-    - Frontend: Angular 11
+#### Frameworks utilizados
+ - API: .NET 5
+- Frontend: Angular 11
+#### Como executar o frontend
+```
+cd src\Web\angular
+ng serve -o
+```
 
 ## Contas para testes
 
