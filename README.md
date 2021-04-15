@@ -2,7 +2,8 @@
     
 ## CI
 
-![](https://github.com/luisOtavio/Corretora/blob/main/.github/workflows/dotnet/badge.svg)
+![](https://github.com/luisOtavio/Corretora/actions/workflows/dotnet.yml/badge.svg)
+
 
 ## Construir e Executar
 ```
