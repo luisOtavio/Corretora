@@ -6,10 +6,6 @@ namespace Corretora.Application.Sbp.Events
     {
         public NewSbpEventCommandValidator()
         {
-            //RuleFor(c => c.Amount)
-            //    .Must((decimal amount) => amount > 0)
-            //    .WithMessage("Ammout must be greater than zero");
-
             RuleFor(c => c.Target)
                 .Must((TargetDto target) => target != null)
                 .WithMessage("Target not found");
